@@ -1,7 +1,7 @@
 public class SmartTv {
   boolean ligada = false;
   int canal = 1;
-  boolean modoMudo = false;
+//  boolean modoMudo = false;
   int volumeMaximo = 100;
   int volumeMinimo = 0;
   int canalMaximo = 50;
