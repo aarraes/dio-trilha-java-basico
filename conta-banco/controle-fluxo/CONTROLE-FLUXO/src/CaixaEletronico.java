@@ -1,9 +1,12 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CaixaEletronico {
 
   public static void main(String[] args) {
+   try {
     double saldo = 1000.00; // Saldo inicial
+ 
     
     while (true) {
     
@@ -18,29 +21,37 @@ public class CaixaEletronico {
     Scanner scanner = new Scanner(System.in);
     int opcao = scanner.nextInt();
 
-    if (opcao == 1) {
-      System.out.println("Seu saldo é: R$ " + saldo);
-    } else if (opcao == 2) {
-      System.out.print("Digite o valor a ser sacado: ");
-      double valorSaque = scanner.nextDouble();
-      if (valorSaque <= saldo) {
-        saldo -= valorSaque;
-        System.out.println("Saque realizado com sucesso! Seu novo saldo é: R$ " + saldo);
-      } else {
-        System.out.println("Saldo insuficiente para realizar o saque.");
-      }
-    } else if (opcao == 3) {
-      System.out.print("Digite o valor a ser depositado: ");
-      double valorDeposito = scanner.nextDouble();
-      saldo += valorDeposito;
-      System.out.println("Depósito realizado com sucesso! Seu novo saldo é: R$ " + saldo);
-    } else if (opcao == 4) {
-      System.out.println("Saindo do caixa eletrônico. Até logo!");
-      break;
-    } else {
-      System.out.println("Opção inválida. Tente novamente.");
+    switch (opcao) {
+      case 1:
+        System.out.println("Seu saldo é: R$ " + saldo);
+        break;
+      case 2:
+        System.out.print("Digite o valor a ser sacado: ");
+        double valorSaque = scanner.nextDouble();
+        if (valorSaque <= saldo) {
+          saldo -= valorSaque;
+          System.out.println("Saque realizado com sucesso! Seu novo saldo é: R$ " + saldo);
+        } else {
+          System.out.println("Saldo insuficiente para realizar o saque.");
+        }
+        break;
+      case 3:
+        System.out.print("Digite o valor a ser depositado: ");
+        double valorDeposito = scanner.nextDouble();
+        saldo += valorDeposito;
+        System.out.println("Depósito realizado com sucesso! Seu novo saldo é: R$ " + saldo);
+        break;
+      case 4:
+        System.out.println("Saindo do caixa eletrônico. Até logo!");
+        return; // Encerra o programa
+      default:
+        System.out.println("Opção inválida. Tente novamente.");
     }
   }
+} catch (InputMismatchException e) {
+      e.printStackTrace();
+    }
 }
-  
+
 }
+
